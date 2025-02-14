@@ -9,8 +9,8 @@
   "name":"OBumper",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Bumper",
+    "path":"folders/Objects/Props/Bumper.yy",
   },
   "parentObjectId":null,
   "persistent":false,

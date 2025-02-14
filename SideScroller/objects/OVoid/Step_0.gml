@@ -3,11 +3,11 @@ var colPlayer = collision_rectangle(x - ((bbox_right - bbox_left) / 2) - 2, y - 
 
 if (colPlayer > 0) {
 	if (key == noone) {
-		if (OPlayer.image_xscale == 1) {
-			key = instance_create_layer(OPlayer.x + 24, OPlayer.y - 20, "KeyLayer", OKeyShift);
+		if (OPlayer.image_xscale == 2) {
+			key = instance_create_layer(OPlayer.x + 40, OPlayer.y - 40, "Key", OKeyShift);
 		}
-		else if (OPlayer.image_xscale == -1) {
-			key = instance_create_layer(OPlayer.x - 24, OPlayer.y - 20, "KeyLayer", OKeyShift);
+		else if (OPlayer.image_xscale == -2) {
+			key = instance_create_layer(OPlayer.x - 40, OPlayer.y - 40, "Key", OKeyShift);
 		}
 	}
 }

@@ -10,20 +10,26 @@ var pressA = keyboard_check_pressed(ord("A"));
 var pressE = keyboard_check_pressed(ord("E"));
 var mouseLeftClick = mouse_check_button_pressed(mb_left);
 var downSpace = keyboard_check(vk_space);
+var downShift = keyboard_check(vk_shift);
 //Collision
 var colWallRight = instance_place(x + 2, y, OCollider);
 var colWallLeft = instance_place(x - 2, y, OCollider);
 var colWallTop = instance_place(x, y - 2, OCollider);
 var colWallBot = instance_place(x, y + 2, OCollider);
 var colAirTop = instance_place(x, y - 2, OVoid);
-//FrameRate
-var frame = 60 * tempOxy / oxygenMax;
 
+//FrameRate
+var frameOxy = 60 * tempOxy / oxygenMax;
+var frameStam = 60 * tempStam / staminaMax;
+
+//Destination
+nextDestinationX = OListObjectif.listX[destination];
+nextDestinationY = OListObjectif.listY[destination];
 //Compass
 if (downSpace) {
 	if ((compass == noone) && (compassPointer == noone)) {
-		compassPointer = instance_create_layer(x + 31 * cos(degtorad(point_direction(x, y, nextDestinationX, nextDestinationY))), y - 31 * sin(degtorad(point_direction(x, y, nextDestinationX, nextDestinationY))), "CompassLayer", OCompassPointer);
-		compass = instance_create_layer(x, y, "CompassLayer", OCompass);
+		compassPointer = instance_create_layer(x + 31 * cos(degtorad(point_direction(x, y, nextDestinationX, nextDestinationY))), y - 31 * sin(degtorad(point_direction(x, y, nextDestinationX, nextDestinationY))), "Compass", OCompassPointer);
+		compass = instance_create_layer(x, y, "Compass", OCompass);
 	}
 }
 if (!downSpace) {
@@ -37,10 +43,10 @@ if (!downSpace) {
 //CursorRotationPistol
 if (pistolEquip) {
 	if (270 < point_direction(x, y, mouse_x, mouse_y) || point_direction(x, y, mouse_x, mouse_y) <= 90) {
-		image_xscale = 1;
+		image_xscale = 2;
 	}
 	else {
-		image_xscale = -1;
+		image_xscale = -2;
 	}
 	if (45 < point_direction(x, y, mouse_x, mouse_y) && point_direction(x, y, mouse_x, mouse_y) <= 135) {
 		image_angle = 90;
@@ -70,15 +76,17 @@ if (!dive) {
 	if (pressShift) {
 		checkPointX = x;
 		checkPointY = y;
-		y += 3;
+		y += 6;
 		diving = true;
+		audio_play_sound(SoSplash, 1, false);
 	}
 }
 //Weapon
 if (pressA && havePistol) {
 	pistolEquip = !pistolEquip;
 	if (pistolEquip) {
-		weapon = instance_create_layer(x, y, "Instances", OPlayerPistol);
+		weapon = instance_create_layer(x, y, "Player", OPlayerPistol);
+		weapon.image_yscale = 2;
 	}
 	else {
 		instance_destroy(weapon);
@@ -86,46 +94,95 @@ if (pressA && havePistol) {
 }
 //Oxygen
 if (dive) {
-	if (tempFrame == frame) {
-		tempFrame = 0;
-		oxygen -= 1;
+	if (tempFrameOxy == frameOxy) {
+		tempFrameOxy = 0;
+		if(oxygenBar) {
+			oxygen -= 1;
+		}
+		else if (fast) {
+			oxygen -= 3;
+		}
+		else {
+			oxygen -= 2;
+		}
 		if (oxygen < 0) {
 			oxygen = 0;
 		}
 	}
 	else {
-		tempFrame += 1;
+		tempFrameOxy += 1;
 	}
 }
 if (!dive) {
-	if(tempFrame == frame) {
-		tempFrame = 0;
+	if(tempFrameOxy == frameOxy) {
+		tempFrameOxy = 0;
 		oxygen += 4;
 		if (oxygen > oxygenMax) {
 			oxygen = oxygenMax;
 		}
 	}
 	else {
-		tempFrame += 1;
+		tempFrameOxy += 1;
 	}
 }
 if (oxygen == 0) {
 	x = checkPointX;
 	y = checkPointY;
 }
+//Speed / Stamina
+if (downShift && !(colAirTop > 0) && (stamina > 0) && speedUp && fast) {
+	maxSpeed = 5;
+	if (tempFrameStam == frameStam) {
+		tempFrameStam = 0;
+		stamina -= 2;
+		if (stamina < 0) {
+			stamina = 0;
+		}
+	}
+	else {
+		tempFrameStam += 1;
+	}
+}
+else if (fast) {
+	maxSpeed = 4;
+	if(tempFrameStam == frameStam) {
+		tempFrameStam = 0;
+		stamina += 2;
+		if (stamina > staminaMax) {
+			stamina = staminaMax;
+		}
+	}
+	else {
+		tempFrameStam += 1;
+	}
+}
+else {
+	maxSpeed = 3;
+}
+if (stamina == 0) {
+	speedUp = false;
+}
+if (stamina == staminaMax) {
+	speedUp = true;
+}
 //Mouvement
-if (!downZ && !downQ && !downS && !!downD) {
+if (!downZ && !downQ && !downS && !downD) {
 	if (YSpeed > 0) {
-		YSpeed -= gravityForce;
+		YSpeed -= gravityForce / 4;
 	}
 	if (YSpeed < 0) {
-		YSpeed += gravityForce;
+		YSpeed += gravityForce / 4;
 	}
 	if (XSpeed > 0) {
-		XSpeed -= gravityForce;
+		XSpeed -= gravityForce / 4;
 	}
 	if (XSpeed < 0) {
-		XSpeed += gravityForce;
+		XSpeed += gravityForce / 4;
+	}
+}
+else {
+	if (!audio_is_playing(SoSwimming)) {
+		audio_play_sound(SoSwimming, 1, false);
 	}
 }
 if (dive) {
@@ -143,8 +200,8 @@ if (dive) {
 	}
 }
 if (downQ) {
-	if (image_xscale == 1) {
-		image_xscale = -1;
+	if (image_xscale == 2) {
+		image_xscale = -2;
 	}
 	XSpeed -= gravityForce * 2;
 	if (XSpeed < - maxSpeed) {
@@ -152,8 +209,8 @@ if (downQ) {
 	}
 }
 if (downD) {
-	if (image_xscale == -1) {
-		image_xscale = 1;
+	if (image_xscale == -2) {
+		image_xscale = 2;
 	}
 	XSpeed += gravityForce * 2;
 	if (XSpeed > maxSpeed) {
@@ -162,16 +219,20 @@ if (downD) {
 }
 //Inertia
 if (XSpeed > 0) {
-	XSpeed -= gravityForce / 2;
+	XSpeed -= gravityForce / 4;
+	show_debug_message("d");
 }
 if (XSpeed < 0) {
-	XSpeed += gravityForce / 2;
+	XSpeed += gravityForce / 4;
+	show_debug_message("q");
 }
 if (YSpeed > 0) {
-	YSpeed -= gravityForce / 2;
+	YSpeed -= gravityForce / 4;
+	show_debug_message("s");
 }
 if (YSpeed < 0) {
-	YSpeed += gravityForce / 2;
+	YSpeed += gravityForce / 4;
+	show_debug_message("q");
 }
 //Gravity
 if (YSpeed < gravityForce) {
@@ -189,6 +250,12 @@ if (propulsY > 0) {
 }
 if (propulsY < 0) {
 	propulsY += gravityForce;
+}
+if (propulsX <= gravityForce && propulsX >= -gravityForce) {
+	propulsX = 0;
+}
+if (propulsY <= gravityForce && propulsY >= -gravityForce) {
+	propulsY = 0;
 }
 //Physic
 if (colWallRight > 0) {
@@ -236,20 +303,100 @@ hspeed = XSpeed + propulsX;
 vspeed = YSpeed + propulsY;
 
 //Animation
-if (vspeed > 0.2 || hspeed > 0.2 || vspeed < -0.2 || hspeed < -0.2) {
-	if (pistolEquip) {
-		sprite_index = ASwimmingPistol;
+if (pistolEquip) {
+	if (fast) {
+		if (vspeed > 0.2 || hspeed > 0.2 || vspeed < -0.2 || hspeed < -0.2) {
+			sprite_index = AFastSwimmingPistol;
+			if (vspeed < 0.3 && vspeed > -0.3 && (hspeed < -0.3 || hspeed > 0.3)) {
+				pistolX = 4;
+				pistolY = -2;
+			}
+			else if (vspeed > 0.3 && hspeed < 0.3 && hspeed > -0.3) {
+				pistolX = 0;
+				pistolY = 6;
+			}
+			else if (vspeed < -0.3 && hspeed < 0.3 && hspeed > -0.3) {
+				pistolX = 0;
+				pistolY = -6;
+			}
+			else if (vspeed < -0.3 && (hspeed > 0.3 || hspeed < -0.3)) {
+				pistolX = 2;
+				pistolY = -3;
+			}
+			else {
+				pistolX = 2;
+				pistolY = 3;
+			}
+		}
+		else if (dive) {
+			sprite_index = AFastIdleUnderPistol;
+			pistolX = 0;
+			pistolY = -6;
+		}
+		else {
+			sprite_index = AFastIdleOverPistol;
+			pistolX = 0;
+			pistolY = -6;
+		}
 	}
 	else {
-		sprite_index = ASwimming;
+		if (vspeed > 0.2 || hspeed > 0.2 || vspeed < -0.2 || hspeed < -0.2) {
+			sprite_index = ASwimmingPistol;
+			if (vspeed < 0.3 && vspeed > -0.3 && (hspeed < -0.3 || hspeed > 0.3)) {
+				pistolX = 4;
+				pistolY = -2;
+			}
+			else if (vspeed > 0.3 && hspeed < 0.3 && hspeed > -0.3) {
+				pistolX = 0;
+				pistolY = 6;
+			}
+			else if (vspeed < -0.3 && hspeed < 0.3 && hspeed > -0.3) {
+				pistolX = 0;
+				pistolY = -6;
+			}
+			else if (vspeed < -0.3 && (hspeed > 0.3 || hspeed < -0.3)) {
+				pistolX = 2;
+				pistolY = -3;
+			}
+			else {
+				pistolX = 2;
+				pistolY = 3;
+			}
+		}
+		else if (dive) {
+			sprite_index = AIdleUnderPistol;
+			pistolX = 0;
+			pistolY = -6;
+		}
+		else {
+			sprite_index = AIdleOverPistol;
+			pistolX = 0;
+			pistolY = -6;
+		}
 	}
 }
 else {
-	if (pistolEquip) {
-		sprite_index = AIdlePistol;
+	if (fast) {
+		if (vspeed > 0.2 || hspeed > 0.2 || vspeed < -0.2 || hspeed < -0.2) {
+			sprite_index = AFastSwimming;
+		}
+		else if (dive) {
+			sprite_index = AFastIdleUnder;
+		}
+		else {
+			sprite_index = AFastIdleOver;
+		}
 	}
 	else {
-		sprite_index = AIdle;
+		if (vspeed > 0.2 || hspeed > 0.2 || vspeed < -0.2 || hspeed < -0.2) {
+			sprite_index = ASwimming;
+		}
+		else if (dive) {
+			sprite_index = AIdleUnder;
+		}
+		else {
+			sprite_index = AIdleOver;
+		}
 	}
 }
 //Rotation
@@ -277,7 +424,7 @@ else if (hspeed < -0.3) {
 }
 else {
 	if (vspeed > 0.3) {
-		if (image_xscale == 1) {
+		if (image_xscale == 2) {
 			image_angle = -90;
 		}
 		else {
@@ -285,7 +432,7 @@ else {
 		}
 	}
 	else if (vspeed < -0.3) {
-		if (image_xscale == 1) {
+		if (image_xscale == 2) {
 			image_angle = 90;
 		}
 		else {

@@ -17,54 +17,94 @@ if (colTop > 0) {
 }
 
 if (image_angle == 0) {
-	stream = instance_create_layer(x, y - 32, "Instances", OStream);
+	stream = instance_create_layer(x, y - 64, "PropsFront", OStream);
 	stream.image_angle = image_angle;
-	stream = instance_create_layer(x, y - 48, "Instances", OStream);
+	stream.image_xscale = image_xscale;
+	stream.image_yscale = image_yscale;
+	stream = instance_create_layer(x, y - 96, "PropsFront", OStream);
 	stream.image_angle = image_angle;
-	stream = instance_create_layer(x, y - 64, "Instances", OStream);
+	stream.image_xscale = image_xscale;
+	stream.image_yscale = image_yscale;
+	stream = instance_create_layer(x, y - 128, "PropsFront", OStream);
 	stream.image_angle = image_angle;
-	stream = instance_create_layer(x, y - 80, "Instances", OStream);
+	stream.image_xscale = image_xscale;
+	stream.image_yscale = image_yscale;
+	stream = instance_create_layer(x, y - 160, "PropsFront", OStream);
 	stream.image_angle = image_angle;
-	stream = instance_create_layer(x, y - 96, "Instances", OStream);
+	stream.image_xscale = image_xscale;
+	stream.image_yscale = image_yscale;
+	stream = instance_create_layer(x, y - 192, "PropsFront", OStream);
 	stream.image_angle = image_angle;
+	stream.image_xscale = image_xscale;
+	stream.image_yscale = image_yscale;
 	stream = noone;
 }
 if (image_angle == 90) {
-	stream = instance_create_layer(x - 32, y, "Instances", OStream);
+	stream = instance_create_layer(x - 64, y, "PropsFront", OStream);
 	stream.image_angle = image_angle;
-	stream = instance_create_layer(x - 48, y, "Instances", OStream);
+	stream.image_xscale = image_xscale;
+	stream.image_yscale = image_yscale;
+	stream = instance_create_layer(x - 96, y, "PropsFront", OStream);
 	stream.image_angle = image_angle;
-	stream = instance_create_layer(x - 64, y, "Instances", OStream);
+	stream.image_xscale = image_xscale;
+	stream.image_yscale = image_yscale;
+	stream = instance_create_layer(x - 128, y, "PropsFront", OStream);
 	stream.image_angle = image_angle;
-	stream = instance_create_layer(x - 80, y, "Instances", OStream);
+	stream.image_xscale = image_xscale;
+	stream.image_yscale = image_yscale;
+	stream = instance_create_layer(x - 160, y, "PropsFront", OStream);
 	stream.image_angle = image_angle;
-	stream = instance_create_layer(x - 96, y, "Instances", OStream);
+	stream.image_xscale = image_xscale;
+	stream.image_yscale = image_yscale;
+	stream = instance_create_layer(x - 192, y, "PropsFront", OStream);
 	stream.image_angle = image_angle;
+	stream.image_xscale = image_xscale;
+	stream.image_yscale = image_yscale;
 	stream = noone;
 }
 if (image_angle == 180) {
-	stream = instance_create_layer(x, y + 32, "Instances", OStream);
+	stream = instance_create_layer(x, y + 64, "PropsFront", OStream);
 	stream.image_angle = image_angle;
-	stream = instance_create_layer(x, y + 48, "Instances", OStream);
+	stream.image_xscale = image_xscale;
+	stream.image_yscale = image_yscale;
+	stream = instance_create_layer(x, y + 96, "PropsFront", OStream);
 	stream.image_angle = image_angle;
-	stream = instance_create_layer(x, y + 64, "Instances", OStream);
+	stream.image_xscale = image_xscale;
+	stream.image_yscale = image_yscale;
+	stream = instance_create_layer(x, y + 128, "PropsFront", OStream);
 	stream.image_angle = image_angle;
-	stream = instance_create_layer(x, y + 80, "Instances", OStream);
+	stream.image_xscale = image_xscale;
+	stream.image_yscale = image_yscale;
+	stream = instance_create_layer(x, y + 160, "PropsFront", OStream);
 	stream.image_angle = image_angle;
-	stream = instance_create_layer(x, y + 96, "Instances", OStream);
+	stream.image_xscale = image_xscale;
+	stream.image_yscale = image_yscale;
+	stream = instance_create_layer(x, y + 192, "PropsFront", OStream);
 	stream.image_angle = image_angle;
+	stream.image_xscale = image_xscale;
+	stream.image_yscale = image_yscale;
 	stream = noone;
 }
 if (image_angle == 270) {
-	stream = instance_create_layer(x + 32, y, "Instances", OStream);
+	stream = instance_create_layer(x + 64, y, "PropsFront", OStream);
 	stream.image_angle = image_angle;
-	stream = instance_create_layer(x + 48, y, "Instances", OStream);
+	stream.image_xscale = image_xscale;
+	stream.image_yscale = image_yscale;
+	stream = instance_create_layer(x + 96, y, "PropsFront", OStream);
 	stream.image_angle = image_angle;
-	stream = instance_create_layer(x + 64, y, "Instances", OStream);
+	stream.image_xscale = image_xscale;
+	stream.image_yscale = image_yscale;
+	stream = instance_create_layer(x + 128, y, "PropsFront", OStream);
 	stream.image_angle = image_angle;
-	stream = instance_create_layer(x + 80, y, "Instances", OStream);
+	stream.image_xscale = image_xscale;
+	stream.image_yscale = image_yscale;
+	stream = instance_create_layer(x + 160, y, "PropsFront", OStream);
 	stream.image_angle = image_angle;
-	stream = instance_create_layer(x + 96, y, "Instances", OStream);
+	stream.image_xscale = image_xscale;
+	stream.image_yscale = image_yscale;
+	stream = instance_create_layer(x + 192, y, "PropsFront", OStream);
 	stream.image_angle = image_angle;
+	stream.image_xscale = image_xscale;
+	stream.image_yscale = image_yscale;
 	stream = noone;
 }

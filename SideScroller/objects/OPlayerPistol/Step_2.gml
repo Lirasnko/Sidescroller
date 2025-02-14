@@ -1,22 +1,24 @@
 //WeaponRotation
-if (OPlayer.image_xscale == 1)
+if (OPlayer.image_xscale == 2)
 {
-	x = OPlayer.x + 4;
-	y = OPlayer.y;
-	image_xscale = 1;
+	x = OPlayer.x + OPlayer.pistolX;
+	y = OPlayer.y + OPlayer.pistolY;
+	image_xscale = 2;
 	image_angle = point_direction(x, y, mouse_x, mouse_y);
 }
-if (OPlayer.image_xscale == -1)
+if (OPlayer.image_xscale == -2)
 {
-	x = OPlayer.x - 4;
-	y = OPlayer.y;
-	image_xscale = -1;
+	x = OPlayer.x - OPlayer.pistolX;
+	y = OPlayer.y + OPlayer.pistolY;
+	image_xscale = -2;
 	image_angle = 180 + point_direction(x, y, mouse_x, mouse_y);
 }
 //Fire
 if (OPlayer.fire) {
 	var angle = point_direction(x, y, mouse_x, mouse_y)
-	var bullet = instance_create_layer(x, y, "Instances", OBullet);
+	var bullet = instance_create_layer(x, y, "Player", OBullet);
+	bullet.image_xscale = 2;
+	bullet.image_yscale = 2;
 	bullet.image_angle = angle;
 	bullet.direction = angle;
 	bullet.speed = 3;

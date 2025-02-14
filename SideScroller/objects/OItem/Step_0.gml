@@ -7,11 +7,11 @@ if (doIt) {
 if (activate) {
 	if (colPlayer > 0) {
 		if (key == noone) {
-			if (OPlayer.image_xscale == 1) {
-				key = instance_create_layer(OPlayer.x + 24, OPlayer.y - 20, "KeyLayer", OKeyE);
+			if (OPlayer.image_xscale == 2) {
+				key = instance_create_layer(OPlayer.x + 40, OPlayer.y - 40, "Key", OKeyE);
 			}
-			else if (OPlayer.image_xscale == -1) {
-				key = instance_create_layer(OPlayer.x - 24, OPlayer.y - 20, "KeyLayer", OKeyE);
+			else if (OPlayer.image_xscale == -2) {
+				key = instance_create_layer(OPlayer.x - 40, OPlayer.y - 40, "Key", OKeyE);
 			}
 		}
 	}
