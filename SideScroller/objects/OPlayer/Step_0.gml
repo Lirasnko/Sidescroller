@@ -220,19 +220,15 @@ if (downD) {
 //Inertia
 if (XSpeed > 0) {
 	XSpeed -= gravityForce / 4;
-	show_debug_message("d");
 }
 if (XSpeed < 0) {
 	XSpeed += gravityForce / 4;
-	show_debug_message("q");
 }
 if (YSpeed > 0) {
 	YSpeed -= gravityForce / 4;
-	show_debug_message("s");
 }
 if (YSpeed < 0) {
 	YSpeed += gravityForce / 4;
-	show_debug_message("q");
 }
 //Gravity
 if (YSpeed < gravityForce) {

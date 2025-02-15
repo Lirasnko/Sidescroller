@@ -1,12 +1,13 @@
 var colPlayer = collision_rectangle(x, y, x + 16 * image_xscale, y + 16 * image_yscale, OPlayer, true, true);
 
-if ((colPlayer > 0) && (OPlayer.destination != number)) {
-	OPlayer.destination = number;
-	if (OPlayer.havePistol) {
-		OPlayer.destination = number + 1;
-	}
-	if (OPlayer.oxygenBar) {
-		OPlayer.destination = number + 2;
-	}
+tempNumber = number;
+if (OPlayer.havePistol) {
+	tempNumber = number + 1;
+}
+if (OPlayer.oxygenBar) {
+	tempNumber = number + 2;
+}
+if ((colPlayer > 0) && (OPlayer.destination != tempNumber)) {
+	OPlayer.destination = tempNumber;
 }
 	

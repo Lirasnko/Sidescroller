@@ -21,5 +21,5 @@ if (OPlayer.fire) {
 	bullet.image_yscale = 2;
 	bullet.image_angle = angle;
 	bullet.direction = angle;
-	bullet.speed = 3;
+	bullet.speed = 6;
 }

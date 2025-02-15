@@ -42,3 +42,31 @@ if (havePistol) {
 		}
 	}
 }
+
+//Message
+if (messageZone == 1) {
+	draw_rectangle_color(440, 900, 1480, 960, $7F7F7F7F, $7F7F7F7F, $7F7F7F7F, $7F7F7F7F, false);
+	draw_text_transformed(475, 910, "Il faut que je retourne à ma base. (Deplacement : ZQSD)", 2, 2, 0);
+}
+if (messageZone == 2) {
+	draw_rectangle_color(400, 900, 1520, 960, $7F7F7F7F, $7F7F7F7F, $7F7F7F7F, $7F7F7F7F, false);
+	draw_text_transformed(435, 910, "Je peux regarder ma boussole (Espace), pour savoir ou aller", 2, 2, 0);
+}
+if (messageZone == 3) {
+	draw_rectangle_color(510, 900, 1410, 960, $7F7F7F7F, $7F7F7F7F, $7F7F7F7F, $7F7F7F7F, false);
+	draw_text_transformed(545, 910, "Avec mes palmes je peux nager plus vite (Shift)", 2, 2, 0);
+}
+if (messageZone == 4) {
+	draw_rectangle_color(540, 840, 1380, 900, $7F7F7F7F, $7F7F7F7F, $7F7F7F7F, $7F7F7F7F, false);
+	draw_text_transformed(575, 850, "Je peux prendre mon pistolet paralisant (A)", 2, 2, 0);
+	draw_rectangle_color(490, 900, 1430, 960, $7F7F7F7F, $7F7F7F7F, $7F7F7F7F, $7F7F7F7F, false);
+	draw_text_transformed(525, 910, "Et paralizer temporairement les Blobs propulseur", 2, 2, 0);
+}
+if (messageZone == 5) {
+	draw_rectangle_color(410, 900, 1510, 960, $7F7F7F7F, $7F7F7F7F, $7F7F7F7F, $7F7F7F7F, false);
+	draw_text_transformed(445, 910, "Maintenant que j'ai tou mon équipement, direction la base.", 2, 2, 0);
+}
+if (messageZone == 6) {
+	draw_rectangle_color(700, 900, 1220, 960, $7F7F7F7F, $7F7F7F7F, $7F7F7F7F, $7F7F7F7F, false);
+	draw_text_transformed(735, 910, "Ma base n'est pas par la.", 2, 2, 0);
+}

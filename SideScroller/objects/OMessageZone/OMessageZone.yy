@@ -1,21 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"OFlippers",
+  "%Name":"OMessageZone",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":2,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"OFlippers",
+  "name":"OMessageZone",
   "overriddenProperties":[],
   "parent":{
-    "name":"Items",
-    "path":"folders/Objects/Items.yy",
+    "name":"Level",
+    "path":"folders/Objects/Level.yy",
   },
-  "parentObjectId":{
-    "name":"OItem",
-    "path":"objects/OItem/OItem.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -29,14 +26,17 @@
   "physicsShape":1,
   "physicsShapePoints":[],
   "physicsStartAwake":true,
-  "properties":[],
+  "properties":[
+    {"$GMObjectProperty":"v1","%Name":"number","filters":[],"listItems":[],"multiselect":false,"name":"number","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":1,},
+    {"$GMObjectProperty":"v1","%Name":"doIt","filters":[],"listItems":[],"multiselect":false,"name":"doIt","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"true","varType":3,},
+  ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"SFlippers",
-    "path":"sprites/SFlippers/SFlippers.yy",
+    "name":"SMessageZone",
+    "path":"sprites/SMessageZone/SMessageZone.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }
