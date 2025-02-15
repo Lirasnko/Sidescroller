@@ -1,3 +1,12 @@
+//OxygeneVisual
+if (oxygen <= 35 && oxygen > 10) {
+	draw_sprite_ext(SBlackBorder, 0, 0, 0, 2, 2, 0, c_white, (104 - ((oxygen - 10) * 4)) / 100);
+}
+if (oxygen <= 10) {
+	draw_sprite_ext(SBlackBorder, 0, 0, 0, 2, 2, 0, c_white, 1);
+	draw_sprite_ext(SBlackFull, 0, 0, 0, 2, 2, 0, c_white, (104 - (oxygen * 10)) / 100);
+}
+
 //OxygeneBar
 if (!oxygenBar) {
 	draw_healthbar(80, 34, 526, 94, oxygen, $FF7F7F7F & $FFFFFF, $FFFF0000 & $FFFFFF, $FFFFFF00 & $FFFFFF, 0, (($FF7F7F7F>>24) != 0), (($FF0000B2>>24) != 0));

@@ -1,15 +1,15 @@
 //WeaponRotation
 if (OPlayer.image_xscale == 2)
 {
-	x = OPlayer.x + OPlayer.pistolX;
-	y = OPlayer.y + OPlayer.pistolY;
+	x = OPlayer.x + OPlayer.pistolX * 2;
+	y = OPlayer.y + OPlayer.pistolY * 2;
 	image_xscale = 2;
 	image_angle = point_direction(x, y, mouse_x, mouse_y);
 }
 if (OPlayer.image_xscale == -2)
 {
-	x = OPlayer.x - OPlayer.pistolX;
-	y = OPlayer.y + OPlayer.pistolY;
+	x = OPlayer.x - OPlayer.pistolX * 2;
+	y = OPlayer.y + OPlayer.pistolY * 2;
 	image_xscale = -2;
 	image_angle = 180 + point_direction(x, y, mouse_x, mouse_y);
 }
